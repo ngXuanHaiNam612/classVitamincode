@@ -1,0 +1,77 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.vitamincode.vitamincode_be.mapper.StudentMapper">
+
+    <resultMap id="StudentResultMap" type="Student">
+        <id column="student_id" property="studentId"/>
+        <result column="student_name" property="studentName"/>
+        <result column="student_email" property="studentEmail"/>
+        <result column="class_id" property="classId"/>
+    </resultMap>
+
+    <select id="selectAllStudent" resultMap="StudentResultMap">
+        SELECT student_id
+             , student_name
+             , student_email
+             , class_id
+        FROM students
+    </select>
+
+    <select id="selectStudentByID" resultMap="StudentResultMap">
+        SELECT student_id
+             , student_name
+             , student_email
+             , class_id
+        FROM students
+        WHERE student_id = #{id}
+    </select>
+
+    <select id="selectStudentByName" resultMap="StudentResultMap">
+        SELECT student_id
+             , student_name
+             , student_email
+             , class_id
+        FROM students
+        WHERE student_name = #{name}
+    </select>
+
+    <select id="selectStudentLikeName" resultMap="StudentResultMap">
+        SELECT student_id
+             , student_name
+             , student_email
+             , class_id
+        FROM students
+        WHERE student_name LIKE CONCAT('%', #{name}, '%')
+    </select>
+
+    <insert id="insertStudent">
+        INSERT INTO students (
+                       student_name
+                    , student_email
+                    , class_id
+        )
+            VALUE (
+            #{student.studentName}
+            , #{student.studentEmail}
+            , #{student.classId}
+            )
+    </insert>
+
+    <update id="updateStudent">
+        UPDATE students
+        SET student_name = #{student.studentName}
+            , student_email = #{student.studentEmail}
+            , class_id = #{student.classId}
+        WHERE student_id = #{student.studentId}
+    </update>
+
+    <delete id="deleteStudent">
+        DELETE
+        FROM students
+        WHERE student_id = #{id}
+    </delete>
+
+
+</mapper>
