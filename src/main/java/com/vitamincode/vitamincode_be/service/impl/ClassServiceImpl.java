@@ -4,6 +4,8 @@ import com.vitamincode.vitamincode_be.convert.ClassConvert;
 import com.vitamincode.vitamincode_be.dto.request.ClassDtoRequest;
 import com.vitamincode.vitamincode_be.dto.response.ClassDtoResponse;
 import com.vitamincode.vitamincode_be.entity.Class;
+import com.vitamincode.vitamincode_be.exception.AppException;
+import com.vitamincode.vitamincode_be.exception.ErrorCode;
 import com.vitamincode.vitamincode_be.mapper.ClassMapper;
 import com.vitamincode.vitamincode_be.service.ClassService;
 import lombok.RequiredArgsConstructor;
@@ -22,15 +24,10 @@ public class ClassServiceImpl implements ClassService {
     @Override
     public List<ClassDtoResponse> selectAllClass() {
 
-        List<ClassDtoResponse> classDtoResponseList = classMapper.selectAllClass()
-                .stream()
-                .map(ClassConvert::classEntityConvertToClassDtoResponse)
-                .toList();
+        if(classMapper.selectAllClass().isEmpty()) throw new AppException(ErrorCode.LIST_CLASS_EMPTY);
 
-        if(!classDtoResponseList.isEmpty()){
-            return classDtoResponseList;
-        }
-        return null;
+        return ClassConvert.listClassEntityConvertToListClassDtoResponse(classMapper.selectAllClass());
+
     }
 
     @Override

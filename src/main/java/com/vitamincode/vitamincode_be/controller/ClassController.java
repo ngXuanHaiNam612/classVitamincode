@@ -2,6 +2,8 @@ package com.vitamincode.vitamincode_be.controller;
 
 
 import com.vitamincode.vitamincode_be.dto.request.ClassDtoRequest;
+import com.vitamincode.vitamincode_be.dto.response.ApiResponse;
+import com.vitamincode.vitamincode_be.mapper.ClassMapper;
 import com.vitamincode.vitamincode_be.service.ClassService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,22 +20,16 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class ClassController {
     private final ClassService classServiceImpl;
+    private final ClassMapper classMapper;
 
     @GetMapping("/getAllClass")
-    public ResponseEntity<?> getAllClass() {
-        Map<String, Object> resultMapAPI = new LinkedHashMap<>();
-        try{
-            resultMapAPI.put("status", 200);
-            resultMapAPI.put("success", true);
-            resultMapAPI.put("data", classServiceImpl.selectAllClass());
+    public ApiResponse<?> getAllClass() {
 
-        }catch(Exception e){
-            resultMapAPI.put("status", 500);
-            resultMapAPI.put("success", false);
-            resultMapAPI.put("data", e.getMessage());
-            log.error("fail to call api /api/v1/class/getAllClass", e);
-        }
-        return ResponseEntity.ok(resultMapAPI);
+        return ApiResponse.builder()
+                .status(200)
+                .success(true)
+                .data(classServiceImpl.selectAllClass())
+                .build();
     }
 
     @GetMapping("/getClassByID/{id}")

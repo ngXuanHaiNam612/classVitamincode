@@ -11,7 +11,7 @@
     </resultMap>
 
     <select id="selectAllClass" resultMap="ClassResultMap">
-        SELECT class_id
+        SELECT class_ida
              , class_name
              , class_description
         FROM class
