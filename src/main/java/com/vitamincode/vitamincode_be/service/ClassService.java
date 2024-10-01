@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface ClassService {
 
-        //read
+    //read
     List<ClassDtoResponse> selectAllClass();
     ClassDtoResponse selectClassById(Integer classID);
     ClassDtoResponse selectClassByName(String className);

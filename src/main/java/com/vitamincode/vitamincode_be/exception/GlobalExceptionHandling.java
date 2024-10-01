@@ -17,6 +17,8 @@ public class GlobalExceptionHandling {
         log.error("Fail to call API" + request.getRequestURI() + " : " +e);
     }
 
+
+    // Bad SQL Grammar
     @ExceptionHandler(value = BadSqlGrammarException.class)
     ResponseEntity<ApiResponse> handleBadSQLGrammarRequestException(BadSqlGrammarException e, HttpServletRequest request) {
 
@@ -30,6 +32,25 @@ public class GlobalExceptionHandling {
                 .build());
     }
 
+
+    //Null pointer
+    @ExceptionHandler(value = NullPointerException.class)
+    ResponseEntity<ApiResponse> handleNullPointerException(NullPointerException e, HttpServletRequest request) {
+
+        logError(e, request);
+
+        return ResponseEntity.badRequest().body(
+                ApiResponse.builder()
+                        .status(ErrorCode.NULL_POINTER_EXCEPTION.getStatus())
+                        .success(false)
+                        .message(ErrorCode.NULL_POINTER_EXCEPTION.getMessage())
+                        .build());
+    }
+
+
+
+
+    //Unknown error
     @ExceptionHandler(value = Exception.class)
     ResponseEntity<ApiResponse> handleUncatchException(Exception e, HttpServletRequest request) {
 
@@ -39,7 +60,9 @@ public class GlobalExceptionHandling {
                 ApiResponse.builder()
                         .status(ErrorCode.UNCATCH_EXCEPTION.getStatus())
                         .success(false)
-                        .message(ErrorCode.UNCATCH_EXCEPTION.getMessage())
+                        .message(e.getClass().getSimpleName())
                         .build());
     }
+
+
 }

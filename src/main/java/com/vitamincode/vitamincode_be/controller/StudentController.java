@@ -1,7 +1,8 @@
 package com.vitamincode.vitamincode_be.controller;
 
 import com.vitamincode.vitamincode_be.dto.request.StudentDtoRequest;
-import com.vitamincode.vitamincode_be.entity.Student;
+import com.vitamincode.vitamincode_be.dto.response.ApiResponse;
+import com.vitamincode.vitamincode_be.exception.ErrorCode;
 import com.vitamincode.vitamincode_be.service.StudentService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,157 +21,86 @@ public class StudentController {
     private final StudentService studentServiceImpl;
 
     @GetMapping("/getAllStudent")
-    public ResponseEntity<?> getAllStudents() {
+    public ApiResponse<?> getAllStudents() {
 
-        Map<String, Object> resultMapAPI = new LinkedHashMap<>();
-
-        try{
-            resultMapAPI.put("status", 200);
-            resultMapAPI.put("success", true);
-            resultMapAPI.put("data", studentServiceImpl.selectAllStudent());
-
-        }catch(Exception e){
-            resultMapAPI.put("status", 500);
-            resultMapAPI.put("success", false);
-            resultMapAPI.put("data", e.getMessage());
-            log.error("fail to call api /api/v1/student/getAllStudent", e);
-        }
-        return ResponseEntity.ok(resultMapAPI);
+       return ApiResponse.builder()
+               .status(ErrorCode.HTTP_STATUS_200.getStatus())
+               .success(true)
+               .data(studentServiceImpl.selectAllStudent())
+               .build();
 
     }
 
     @GetMapping("/getStudentByID/{id}")
-    public ResponseEntity<?> getStudentById(@PathVariable Integer id) {
+    public ApiResponse<?> getStudentById(@PathVariable Integer id) {
 
-        Map<String, Object> resultMapAPI = new LinkedHashMap<>();
-        try{
-            resultMapAPI.put("status", 200);
-            resultMapAPI.put("success", true);
-            resultMapAPI.put("data", studentServiceImpl.selectStudentById(id));
-
-        }catch(Exception e){
-            resultMapAPI.put("status", 500);
-            resultMapAPI.put("success", false);
-            resultMapAPI.put("data", e.getMessage());
-            log.error("fail to call api /api/v1/student/getStudentByID/{id}", e);
-
-        }
-        return ResponseEntity.ok(resultMapAPI);
+        return ApiResponse.builder()
+                .status(ErrorCode.HTTP_STATUS_200.getStatus())
+                .success(true)
+                .data(studentServiceImpl.selectStudentById(id))
+                .build();
     }
 
     @GetMapping("/getStudentByID")
-    public ResponseEntity<?> getStudentByIdC2(@RequestParam("id") Integer id) {
+    public ApiResponse<?> getStudentByIdC2(@RequestParam("id") Integer id) {
 
-        Map<String, Object> resultMapAPI = new LinkedHashMap<>();
-        try{
-            resultMapAPI.put("status", 200);
-            resultMapAPI.put("success", true);
-            resultMapAPI.put("data", studentServiceImpl.selectStudentById(id));
-
-        }catch(Exception e){
-            resultMapAPI.put("status", 500);
-            resultMapAPI.put("success", false);
-            resultMapAPI.put("data", e.getMessage());
-            log.error("fail to call api /api/v1/student/getStudentByID", e);
-
-        }
-        return ResponseEntity.ok(resultMapAPI);
+        return ApiResponse.builder()
+                .status(ErrorCode.HTTP_STATUS_200.getStatus())
+                .success(true)
+                .data(studentServiceImpl.selectStudentById(id))
+                .build();
     }
 
     @GetMapping("/getStudentByName/{name}")
-    public ResponseEntity<?> getStudentByName(@PathVariable String name) {
+    public ApiResponse<?> getStudentByName(@PathVariable String name) {
 
-        Map<String, Object> resultMapAPI = new LinkedHashMap<>();
-        try{
-            resultMapAPI.put("status", 200);
-            resultMapAPI.put("success", true);
-            resultMapAPI.put("data", studentServiceImpl.selectStudentByName(name));
-
-        }catch(Exception e){
-            resultMapAPI.put("status", 500);
-            resultMapAPI.put("success", false);
-            resultMapAPI.put("data", e.getMessage());
-            log.error("fail to call api /api/v1/student/getStudentByName/{name}", e);
-        }
-        return ResponseEntity.ok(resultMapAPI);
+        return ApiResponse.builder()
+                .status(ErrorCode.HTTP_STATUS_200.getStatus())
+                .success(true)
+                .data(studentServiceImpl.selectStudentByName(name))
+                .build();
     }
 
 
     @GetMapping("/getStudentLikeName")
-    public ResponseEntity<?> getStudentLikeName(@RequestParam("name") String name) {
+    public ApiResponse<?> getStudentLikeName(@RequestParam("name") String name) {
 
-        Map<String, Object> resultMapAPI = new LinkedHashMap<>();
-        try{
-            resultMapAPI.put("status", 200);
-            resultMapAPI.put("success", true);
-            resultMapAPI.put("data", studentServiceImpl.selectStudentByName(name));
-
-        }catch(Exception e){
-            resultMapAPI.put("status", 500);
-            resultMapAPI.put("success", false);
-            resultMapAPI.put("data", e.getMessage());
-            log.error("fail to call api /api/v1/student/getStudentLikeName", e);
-        }
-        return ResponseEntity.ok(resultMapAPI);
+        return ApiResponse.builder()
+                .status(ErrorCode.HTTP_STATUS_200.getStatus())
+                .success(true)
+                .data(studentServiceImpl.selectStudentLikeName(name))
+                .build();
     }
 
 
     @PostMapping("/insertNewStudent")
-    public ResponseEntity<?> insertNewStudent(@RequestBody StudentDtoRequest student) {
+    public ApiResponse<?> insertNewStudent(@RequestBody StudentDtoRequest newStudent) {
 
-        Map<String, Object> resultMapAPI = new LinkedHashMap<>();
-        try{
-            resultMapAPI.put("status", 200);
-            resultMapAPI.put("success", true);
-            resultMapAPI.put("data", studentServiceImpl.insertStudent(student));
-
-        }catch(Exception e){
-            resultMapAPI.put("status", 500);
-            resultMapAPI.put("success", false);
-            resultMapAPI.put("data", e.getMessage());
-            log.error("fail to call api /api/v1/student/insertNewStudent", e);
-        }
-        return ResponseEntity.ok(resultMapAPI);
+        return ApiResponse.builder()
+                .status(ErrorCode.HTTP_STATUS_200.getStatus())
+                .success(true)
+                .data(studentServiceImpl.insertStudent(newStudent))
+                .build();
     }
 
 
     @PutMapping("/updateStudent")
-    public ResponseEntity<?> updateStudent(@RequestBody StudentDtoRequest student) {
+    public ApiResponse<?> updateStudent(@RequestBody StudentDtoRequest updateStudent) {
 
-        Map<String, Object> resultMapAPI = new LinkedHashMap<>();
-        try{
-            resultMapAPI.put("status", 200);
-            resultMapAPI.put("success", true);
-            resultMapAPI.put("data", studentServiceImpl.updateStudent(student));
-
-        }catch(Exception e){
-            resultMapAPI.put("status", 500);
-            resultMapAPI.put("success", false);
-            resultMapAPI.put("data", e.getMessage());
-            log.error("fail to call api /api/v1/student/updateStudent", e);
-        }
-        return ResponseEntity.ok(resultMapAPI);
+        return ApiResponse.builder()
+                .status(ErrorCode.HTTP_STATUS_200.getStatus())
+                .success(true)
+                .data(studentServiceImpl.updateStudent(updateStudent))
+                .build();
     }
 
     @DeleteMapping("/deleteStudentByID/{id}")
-    public ResponseEntity<?> deleteStudentById(@PathVariable("id") Integer id) {
-        Map<String, Object> resultMapAPI = new LinkedHashMap<>();
-        try{
-            resultMapAPI.put("status", 200);
-            resultMapAPI.put("success", true);
-            resultMapAPI.put("data", studentServiceImpl.deleteStudentById(id));
+    public ApiResponse<?> deleteStudentById(@PathVariable("id") Integer id) {
 
-        }catch(Exception e){
-            resultMapAPI.put("status", 500);
-            resultMapAPI.put("success", false);
-            resultMapAPI.put("data", e.getMessage());
-            log.error("fail to call api /api/v1/student/deleteStudentByID/{id}", e);
-        }
-        return ResponseEntity.ok(resultMapAPI);
-
+        return ApiResponse.builder()
+                .status(ErrorCode.HTTP_STATUS_200.getStatus())
+                .success(true)
+                .data(studentServiceImpl.deleteStudentById(id))
+                .build();
     }
-
-
-
-
 }
