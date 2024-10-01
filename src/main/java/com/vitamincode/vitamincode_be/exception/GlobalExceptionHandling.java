@@ -48,7 +48,20 @@ public class GlobalExceptionHandling {
     }
 
 
+    //App Excoption
+    @ExceptionHandler(value = AppException.class)
+    ResponseEntity<ApiResponse> handleAppException(AppException e, HttpServletRequest request) {
 
+        logError(e, request);
+        ErrorCode errorCode = e.getErrorCode();
+
+        return ResponseEntity.badRequest().body(
+                ApiResponse.builder()
+                        .status(errorCode.getStatus())
+                        .success(false)
+                        .message(errorCode.getMessage())
+                        .build());
+    }
 
     //Unknown error
     @ExceptionHandler(value = Exception.class)
