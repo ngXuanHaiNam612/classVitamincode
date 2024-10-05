@@ -8,17 +8,14 @@ import com.vitamincode.vitamincode_be.mapper.ClassMapper;
 import com.vitamincode.vitamincode_be.service.ClassService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-
-import java.util.LinkedHashMap;
-import java.util.Map;
 @Slf4j
 @RestController
 @RequestMapping(value = "/api/v1/class")
 
 @RequiredArgsConstructor
+@CrossOrigin
 public class ClassController {
     private final ClassService classServiceImpl;
     private final ClassMapper classMapper;
@@ -72,27 +69,17 @@ public class ClassController {
                 .build();
     }
 
-    @PostMapping(value = "/insertNewClass")
-    public ApiResponse<?> createClass(@RequestBody ClassDtoRequest newClass) {
+    @PostMapping(value = "/save")
+    public ApiResponse<?> saveClass(@RequestBody ClassDtoRequest classDtoRequest) {
 
         return ApiResponse.builder()
                 .status(ErrorCode.HTTP_STATUS_200.getStatus())
                 .success(true)
-                .data(classServiceImpl.insertClass(newClass))
+                .data(classServiceImpl.saveClass(classDtoRequest))
                 .build();
 
     }
 
-    @PutMapping(value = "/updateClass")
-    public ApiResponse<?> updateClass(@RequestBody ClassDtoRequest updateClass) {
-
-        return ApiResponse.builder()
-                .status(ErrorCode.HTTP_STATUS_200.getStatus())
-                .success(true)
-                .data(classServiceImpl.updateClass(updateClass))
-                .build();
-
-    }
 
     @DeleteMapping("/deleteClass/{id}")
     public ApiResponse<?> deleteClass(@PathVariable("id") Integer classID) {

@@ -9,9 +9,8 @@ import java.util.List;
 @Mapper
 public interface ClassMapper {
     List<Class> selectAllClass();
-
+    List<Class>  selectClass(@Param("class") Class findClass);
     Class selectClassByID(@Param("classID") Integer classID);
-
     Class selectClassByName(@Param("className") String className);
     List<Class>  selectClassLikeName(@Param("className") String className);
 
@@ -21,4 +20,6 @@ public interface ClassMapper {
     int updateClass(@Param("updateClass") Class updateClass);
 
     int deleteClass(@Param("classID") Integer classID);
+
+    boolean isClassExist(@Param("classID") Integer classID);
 }

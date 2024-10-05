@@ -10,35 +10,68 @@
         <result column="class_description" property="classDescription"/>
     </resultMap>
 
+    <sql id="ClassColumn">
+        class_id
+        , class_name
+        , class_description
+    </sql>
+
     <select id="selectAllClass" resultMap="ClassResultMap">
-        SELECT class_id
-             , class_name
-             , class_description
+        SELECT
+            <include refid="ClassColumn"/>
         FROM class
     </select>
 
     <select id="selectClassByID" resultMap="ClassResultMap">
-        SELECT class_id
-             , class_name
-             , class_description
+        SELECT
+            <include refid="ClassColumn"/>
         FROM class
         WHERE class_id = #{classID}
     </select>
 
+    <select id="selectClass" resultMap="ClassResultMap">
+        SELECT
+        <include refid="ClassColumn"/>
+        FROM class
+        <where>
+            1 = 1
+        <if test="class_id != null">
+            AND class_id = #{class.classId}
+        </if>
+
+        <if test="class_name != null">
+            AND class_name = #{class.className}
+        </if>
+
+        <if test="class_description != null">
+            AND class_description = #{class.classDescription}
+        </if>
+
+        </where>
+    </select>
+
+
     <select id="selectClassByName" resultMap="ClassResultMap">
-        SELECT class_id
-             , class_name
-             , class_description
+        SELECT
+            <include refid="ClassColumn"/>
         FROM class
         WHERE class_name = #{className}
     </select>
 
     <select id="selectClassLikeName" resultMap="ClassResultMap">
-        SELECT class_id
-             , class_name
-             , class_description
+        SELECT
+            <include refid="ClassColumn"/>
         FROM class
         WHERE class_name LIKE CONCAT('%',#{className},'%')
+    </select>
+
+    <select id="isClassExist" resultType="boolean">
+        SELECT EXISTS(
+            SELECT
+                1
+            FROM class
+            WHERE class_id = #{classID}
+        )
     </select>
 
     <insert  id="insertNewClass">
