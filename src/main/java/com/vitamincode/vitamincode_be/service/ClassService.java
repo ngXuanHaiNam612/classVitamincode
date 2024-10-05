@@ -13,11 +13,14 @@ public interface ClassService {
     ClassDtoResponse selectClassByName(String className);
     List<ClassDtoResponse> selectClassLikeName(String className);
 
-    //create
-    int insertClass(ClassDtoRequest newClass);
+//    //create
+//    int insertClass(ClassDtoRequest newClass);
+//
+//    //update
+//    int updateClass(ClassDtoRequest updateClass);
 
-    //update
-    int updateClass(ClassDtoRequest updateClass);
+    //save
+    int saveClass(ClassDtoRequest classDtoRequest);
 
     //delete
     int deleteClassById(Integer classID);

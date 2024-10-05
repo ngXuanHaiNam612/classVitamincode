@@ -6,16 +6,15 @@ import com.vitamincode.vitamincode_be.exception.ErrorCode;
 import com.vitamincode.vitamincode_be.service.StudentService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/student")
 @RequiredArgsConstructor
 @Slf4j
+@CrossOrigin
+
 public class StudentController {
 
     private final StudentService studentServiceImpl;
