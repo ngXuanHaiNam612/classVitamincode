@@ -19,9 +19,5 @@ import java.util.List;
 @CrossOrigin
 public class UserController {
 
-    @GetMapping("/getAllUser")
-    ApiResponse<List<User>> getAllUser(){
 
-        return ApiResponse.<List<User>>.
-    }
 }

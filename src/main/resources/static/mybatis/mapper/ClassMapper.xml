@@ -26,43 +26,26 @@
         SELECT
             <include refid="ClassColumn"/>
         FROM class
-        WHERE class_id = #{classID}
-    </select>
-
-    <select id="selectClass" resultMap="ClassResultMap">
-        SELECT
-        <include refid="ClassColumn"/>
-        FROM class
         <where>
             1 = 1
-        <if test="class_id != null">
-            AND class_id = #{class.classId}
-        </if>
-
-        <if test="class_name != null">
-            AND class_name = #{class.className}
-        </if>
-
-        <if test="class_description != null">
-            AND class_description = #{class.classDescription}
-        </if>
-
+            <if test="id != null">
+                AND class_id = #{id}
+            </if>
         </where>
     </select>
-
 
     <select id="selectClassByName" resultMap="ClassResultMap">
         SELECT
             <include refid="ClassColumn"/>
         FROM class
-        WHERE class_name = #{className}
+        WHERE class_name = #{name}
     </select>
 
     <select id="selectClassLikeName" resultMap="ClassResultMap">
         SELECT
             <include refid="ClassColumn"/>
         FROM class
-        WHERE class_name LIKE CONCAT('%',#{className},'%')
+        WHERE class_name LIKE CONCAT('%',#{name},'%')
     </select>
 
     <select id="isClassExist" resultType="boolean">
@@ -70,7 +53,7 @@
             SELECT
                 1
             FROM class
-            WHERE class_id = #{classID}
+            WHERE class_id = #{id}
         )
     </select>
 
@@ -95,7 +78,7 @@
     <delete id="deleteClass">
         DELETE
         FROM class
-        WHERE class_id = #{classID}
+        WHERE class_id = #{id}
     </delete>
 
 </mapper>

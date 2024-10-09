@@ -31,9 +31,9 @@ public class ClassServiceImpl implements ClassService {
     }
 
     @Override
-    public ClassDtoResponse selectClassById(Integer classID) {
-        var result = ClassConvert.classEntityConvertToClassDtoResponse(classMapper.selectClassByID(classID));
-        if(Objects.isNull(result)) throw new AppException(ErrorCode.CLASS_EMPTY);
+    public  List<ClassDtoResponse> selectClassById(Integer classID) {
+        var result = ClassConvert.listClassEntityConvertToListClassDtoResponse(classMapper.selectClassByID(classID));
+        if(result.isEmpty()) throw new AppException(ErrorCode.NO_CLASS_WITH_THIS_ID);
         return result;
     }
 
@@ -51,21 +51,11 @@ public class ClassServiceImpl implements ClassService {
         return result;
     }
 
-//    @Override
-//    public int insertClass(ClassDtoRequest newClass) {
-//        return classMapper.insertNewClass(ClassConvert.classDtoRequestConvertToClass(newClass));
-//    }
-//
-//    @Override
-//    public int updateClass(ClassDtoRequest updateClass) {
-//        return classMapper.updateClass(ClassConvert.classDtoRequestConvertToClass(updateClass));
-//    }
 
     @Override
     public int saveClass(ClassDtoRequest classDtoRequest) {
         var entity = ClassConvert.classDtoRequestConvertToClass(classDtoRequest);
         Integer id = entity.getClassId();
-
         if (classMapper.isClassExist(id)) {
             log.error( "" + classMapper.isClassExist(id));
             log.error("exist");

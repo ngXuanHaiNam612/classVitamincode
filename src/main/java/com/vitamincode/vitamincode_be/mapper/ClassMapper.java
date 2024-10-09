@@ -9,17 +9,16 @@ import java.util.List;
 @Mapper
 public interface ClassMapper {
     List<Class> selectAllClass();
-    List<Class>  selectClass(@Param("class") Class findClass);
-    Class selectClassByID(@Param("classID") Integer classID);
-    Class selectClassByName(@Param("className") String className);
-    List<Class>  selectClassLikeName(@Param("className") String className);
+    List<Class> selectClassByID(@Param("id") Integer classID);
+    Class selectClassByName(@Param("name") String className);
+    List<Class>selectClassLikeName(@Param("name") String className);
 
 
     int insertNewClass(@Param("newClass") Class newClass);
 
     int updateClass(@Param("updateClass") Class updateClass);
 
-    int deleteClass(@Param("classID") Integer classID);
+    int deleteClass(@Param("id") Integer classID);
 
-    boolean isClassExist(@Param("classID") Integer classID);
+    boolean isClassExist(@Param("id") Integer classID);
 }

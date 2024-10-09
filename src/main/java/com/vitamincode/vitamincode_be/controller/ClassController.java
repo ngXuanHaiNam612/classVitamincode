@@ -31,17 +31,8 @@ public class ClassController {
                 .build();
     }
 
-    @GetMapping("/getClassByID/{id}")
-    public ApiResponse<?> getClassByID(@PathVariable("id") Integer classID) {
-        return ApiResponse.builder()
-                .status(ErrorCode.HTTP_STATUS_200.getStatus())
-                .success(true)
-                .data(classServiceImpl.selectClassById(classID))
-                .build();
-    }
-    //cách 2
     @GetMapping("/getClassByID")
-    public ApiResponse<?> getClassByIDc2(@RequestParam("id") Integer classID) {
+    public ApiResponse<?> getClassByIDc2(@RequestParam(name = "id", required = false) Integer classID) {
         return ApiResponse.builder()
                 .status(ErrorCode.HTTP_STATUS_200.getStatus())
                 .success(true)
@@ -69,7 +60,7 @@ public class ClassController {
                 .build();
     }
 
-    @PostMapping(value = "/save")
+    @PostMapping(value = "/saveClass")
     public ApiResponse<?> saveClass(@RequestBody ClassDtoRequest classDtoRequest) {
 
         return ApiResponse.builder()
@@ -79,7 +70,6 @@ public class ClassController {
                 .build();
 
     }
-
 
     @DeleteMapping("/deleteClass/{id}")
     public ApiResponse<?> deleteClass(@PathVariable("id") Integer classID) {

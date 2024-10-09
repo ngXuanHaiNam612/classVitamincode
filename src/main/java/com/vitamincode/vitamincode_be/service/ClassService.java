@@ -9,15 +9,9 @@ public interface ClassService {
 
     //read
     List<ClassDtoResponse> selectAllClass();
-    ClassDtoResponse selectClassById(Integer classID);
+    List<ClassDtoResponse> selectClassById(Integer classID);
     ClassDtoResponse selectClassByName(String className);
     List<ClassDtoResponse> selectClassLikeName(String className);
-
-//    //create
-//    int insertClass(ClassDtoRequest newClass);
-//
-//    //update
-//    int updateClass(ClassDtoRequest updateClass);
 
     //save
     int saveClass(ClassDtoRequest classDtoRequest);
