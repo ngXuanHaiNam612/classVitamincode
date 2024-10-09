@@ -3,7 +3,7 @@ package com.vitamincode.vitamincode_be.controller;
 
 import com.vitamincode.vitamincode_be.dto.request.ClassDtoRequest;
 import com.vitamincode.vitamincode_be.dto.response.ApiResponse;
-import com.vitamincode.vitamincode_be.exception.ErrorCode;
+import com.vitamincode.vitamincode_be.enums.ErrorCode;
 import com.vitamincode.vitamincode_be.mapper.ClassMapper;
 import com.vitamincode.vitamincode_be.service.ClassService;
 import lombok.RequiredArgsConstructor;

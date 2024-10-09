@@ -1,6 +1,7 @@
 package com.vitamincode.vitamincode_be.exception;
 
 import com.vitamincode.vitamincode_be.dto.response.ApiResponse;
+import com.vitamincode.vitamincode_be.enums.ErrorCode;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;

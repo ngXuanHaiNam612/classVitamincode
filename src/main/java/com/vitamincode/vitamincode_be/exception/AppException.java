@@ -1,6 +1,7 @@
 package com.vitamincode.vitamincode_be.exception;
 
 
+import com.vitamincode.vitamincode_be.enums.ErrorCode;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;

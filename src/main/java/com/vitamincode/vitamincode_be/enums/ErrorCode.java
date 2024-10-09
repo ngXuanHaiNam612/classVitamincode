@@ -1,4 +1,4 @@
-package com.vitamincode.vitamincode_be.exception;
+package com.vitamincode.vitamincode_be.enums;
 
 
 import lombok.AllArgsConstructor;
