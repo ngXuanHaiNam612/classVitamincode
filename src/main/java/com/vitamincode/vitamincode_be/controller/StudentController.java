@@ -30,18 +30,8 @@ public class StudentController {
 
     }
 
-    @GetMapping("/getStudentByID/{id}")
-    public ApiResponse<?> getStudentById(@PathVariable Integer id) {
-
-        return ApiResponse.builder()
-                .status(ErrorCode.HTTP_STATUS_200.getStatus())
-                .success(true)
-                .data(studentServiceImpl.selectStudentById(id))
-                .build();
-    }
-
-    @GetMapping("/getStudentByID")
-    public ApiResponse<?> getStudentByIdC2(@RequestParam("id") Integer id) {
+    @GetMapping("/getStudent")
+    public ApiResponse<?> getStudentByIdC2(@RequestParam(name ="id", required = false) Integer id) {
 
         return ApiResponse.builder()
                 .status(ErrorCode.HTTP_STATUS_200.getStatus())
@@ -72,26 +62,16 @@ public class StudentController {
     }
 
 
-    @PostMapping("/insertNewStudent")
-    public ApiResponse<?> insertNewStudent(@RequestBody StudentDtoRequest newStudent) {
+    @PostMapping("/save")
+    public ApiResponse<?> insertNewStudent(@RequestBody StudentDtoRequest studentDtoRequest) {
 
         return ApiResponse.builder()
                 .status(ErrorCode.HTTP_STATUS_200.getStatus())
                 .success(true)
-                .data(studentServiceImpl.insertStudent(newStudent))
+                .data(studentServiceImpl.saveStudent(studentDtoRequest))
                 .build();
     }
 
-
-    @PutMapping("/updateStudent")
-    public ApiResponse<?> updateStudent(@RequestBody StudentDtoRequest updateStudent) {
-
-        return ApiResponse.builder()
-                .status(ErrorCode.HTTP_STATUS_200.getStatus())
-                .success(true)
-                .data(studentServiceImpl.updateStudent(updateStudent))
-                .build();
-    }
 
     @DeleteMapping("/deleteStudentByID/{id}")
     public ApiResponse<?> deleteStudentById(@PathVariable("id") Integer id) {

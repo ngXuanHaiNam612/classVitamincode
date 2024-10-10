@@ -9,15 +9,12 @@ public interface StudentService {
 
     //read
     List<StudentDtoRespone> selectAllStudent();
-    StudentDtoRespone selectStudentById(Integer id);
+    List<StudentDtoRespone> selectStudentById(Integer id);
     StudentDtoRespone selectStudentByName(String name);
     List<StudentDtoRespone> selectStudentLikeName(String name);
 
-    //create
-    int insertStudent(StudentDtoRequest newStudent);
-
-    //update
-    int updateStudent(StudentDtoRequest updateStudent);
+    //save
+    int saveStudent(StudentDtoRequest updateStudent);
 
     //delete
     int deleteStudentById(Integer studentID);

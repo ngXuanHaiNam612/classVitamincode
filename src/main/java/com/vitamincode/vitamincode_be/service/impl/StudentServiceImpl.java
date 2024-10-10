@@ -5,6 +5,7 @@ import com.vitamincode.vitamincode_be.dto.request.StudentDtoRequest;
 import com.vitamincode.vitamincode_be.dto.response.StudentDtoRespone;
 import com.vitamincode.vitamincode_be.exception.AppException;
 import com.vitamincode.vitamincode_be.enums.ErrorCode;
+import com.vitamincode.vitamincode_be.mapper.ClassMapper;
 import com.vitamincode.vitamincode_be.mapper.StudentMapper;
 import com.vitamincode.vitamincode_be.service.StudentService;
 import lombok.RequiredArgsConstructor;
@@ -27,9 +28,9 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public StudentDtoRespone selectStudentById(Integer id) {
-        var result = StudentConvert.studentEntityConvertToStudentRespone(studentMapper.selectStudentByID(id));
-        if(Objects.isNull(result)) throw new AppException(ErrorCode.STUDENT_EMPTY);
+    public  List<StudentDtoRespone> selectStudentById(Integer id) {
+        var result = StudentConvert.listStudentEntityConvertToListStudentRespone(studentMapper.selectStudentByID(id));
+        if(result.isEmpty()) throw new AppException(ErrorCode.NO_STUDENT_WITH_THIS_ID);
         return result;
     }
 
@@ -48,14 +49,16 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public int insertStudent(StudentDtoRequest newStudent) {
-        return studentMapper.insertStudent(StudentConvert.studentDtoRequestConvertToStudentEntity(newStudent));
+    public int saveStudent(StudentDtoRequest studentDtoRequest) {
+        var entity = StudentConvert.studentDtoRequestConvertToStudentEntity(studentDtoRequest);
+        Integer id = studentDtoRequest.getStudentId();
+        if(studentMapper.isStudentExist(id)){
+            return studentMapper.updateStudent(entity);
+        }
+        return studentMapper.insertStudent(entity);
+
     }
 
-    @Override
-    public int updateStudent(StudentDtoRequest updateStudent) {
-        return studentMapper.updateStudent(StudentConvert.studentDtoRequestConvertToStudentEntity(updateStudent));
-    }
 
     @Override
     public int deleteStudentById(Integer studentID) {

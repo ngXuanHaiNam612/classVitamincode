@@ -8,12 +8,18 @@ import java.util.List;
 
 @Mapper
 public interface StudentMapper {
+
     List<Student> selectAllStudent();
-    Student selectStudentByID(@Param("id")Integer studentID);
+    List<Student> selectStudentByID(@Param("id")Integer studentID);
     Student selectStudentByName(@Param("name") String studentName);
     List<Student> selectStudentLikeName(@Param("name") String studentName);
+
     int insertStudent(@Param("student")Student student);
+
     int updateStudent(@Param("student")Student student);
+
     int deleteStudent(@Param("id")Integer studentID);
+
+    boolean isStudentExist(@Param("id")Integer studentID);
 
 }

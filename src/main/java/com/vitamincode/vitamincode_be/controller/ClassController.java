@@ -60,7 +60,7 @@ public class ClassController {
                 .build();
     }
 
-    @PostMapping(value = "/saveClass")
+    @PostMapping(value = "/save")
     public ApiResponse<?> saveClass(@RequestBody ClassDtoRequest classDtoRequest) {
 
         return ApiResponse.builder()
