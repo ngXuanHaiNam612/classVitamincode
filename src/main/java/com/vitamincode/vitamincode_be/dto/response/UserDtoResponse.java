@@ -8,8 +8,8 @@ import lombok.Setter;
 @Setter
 @Builder
 public class UserDtoResponse{
-    private Integer id;
     private String username;
     private String email;
     private Boolean enabled;
+    private Integer roleId;
 }

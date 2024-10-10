@@ -33,10 +33,5 @@ public class ClassConvert {
                 .build();
     }
 
-    public static List<Class> listClassDtoRequestConvertToListClass(List<ClassDtoRequest> listDtoRequest){
-        return listDtoRequest
-                .stream()
-                .map(ClassConvert::classDtoRequestConvertToClass)
-                .toList();
-    }
+
 }

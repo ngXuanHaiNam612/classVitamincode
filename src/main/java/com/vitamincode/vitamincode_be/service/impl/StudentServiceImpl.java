@@ -5,7 +5,6 @@ import com.vitamincode.vitamincode_be.dto.request.StudentDtoRequest;
 import com.vitamincode.vitamincode_be.dto.response.StudentDtoRespone;
 import com.vitamincode.vitamincode_be.exception.AppException;
 import com.vitamincode.vitamincode_be.enums.ErrorCode;
-import com.vitamincode.vitamincode_be.mapper.ClassMapper;
 import com.vitamincode.vitamincode_be.mapper.StudentMapper;
 import com.vitamincode.vitamincode_be.service.StudentService;
 import lombok.RequiredArgsConstructor;
@@ -22,28 +21,28 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public List<StudentDtoRespone> selectAllStudent() {
-        var result = StudentConvert.listStudentEntityConvertToListStudentRespone(studentMapper.selectAllStudent());
+        var result = StudentConvert.listStudentEntityConvertToListStudentResponse(studentMapper.selectAllStudent());
         if(result.isEmpty()) throw  new AppException(ErrorCode.LIST_STUDENT_EMPTY);
         return result;
     }
 
     @Override
     public  List<StudentDtoRespone> selectStudentById(Integer id) {
-        var result = StudentConvert.listStudentEntityConvertToListStudentRespone(studentMapper.selectStudentByID(id));
+        var result = StudentConvert.listStudentEntityConvertToListStudentResponse(studentMapper.selectStudentByID(id));
         if(result.isEmpty()) throw new AppException(ErrorCode.NO_STUDENT_WITH_THIS_ID);
         return result;
     }
 
     @Override
     public StudentDtoRespone selectStudentByName(String name) {
-        var result = StudentConvert.studentEntityConvertToStudentRespone(studentMapper.selectStudentByName(name));
+        var result = StudentConvert.studentEntityConvertToStudentResponse(studentMapper.selectStudentByName(name));
         if(Objects.isNull(result)) throw new AppException(ErrorCode.STUDENT_EMPTY);
         return result;
     }
 
     @Override
     public List<StudentDtoRespone> selectStudentLikeName(String name) {
-        var result = StudentConvert.listStudentEntityConvertToListStudentRespone(studentMapper.selectStudentLikeName(name));
+        var result = StudentConvert.listStudentEntityConvertToListStudentResponse(studentMapper.selectStudentLikeName(name));
         if(result.isEmpty()) throw new AppException(ErrorCode.LIST_STUDENT_EMPTY);
         return result;
     }
