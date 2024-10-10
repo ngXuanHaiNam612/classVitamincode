@@ -9,7 +9,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(schema = "vitamincode_class", name = "user")
+@Table(schema = "vitamincode_class", name = "`user`")
 @Getter
 @Setter
 public class User {
@@ -21,7 +21,7 @@ public class User {
     private String userName;
 
     @Column(name = "password")
-    private String passWord;
+    private String password;
 
     @Column(name = "email")
     private String email;

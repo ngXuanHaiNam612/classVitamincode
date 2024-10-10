@@ -15,3 +15,5 @@ mybatis:
   config-location: classpath:/static/mybatis/mybatis-config.xml
   mapper-locations: classpath:/static/mybatis/mapper/*.xml
 
+jwt:
+  secret-key: "MOcz3OgXSuiJS9JIs75AlVx-jMAd9q0-DUKXCFcCMPw"

@@ -8,9 +8,9 @@ import lombok.Setter;
 @Setter
 @Builder
 public class UserDtoRequest {
-    private Integer id;
     private String username;
     private String password;
     private String email;
     private Boolean enabled;
+    private Integer roleId;
 }

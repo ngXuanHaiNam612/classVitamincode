@@ -8,7 +8,7 @@ import java.util.List;
 
 public class StudentConvert {
 
-    public static StudentDtoRespone studentEntityConvertToStudentRespone(Student studentEntity){
+    public static StudentDtoRespone studentEntityConvertToStudentResponse(Student studentEntity){
 
         return StudentDtoRespone.builder()
                 .studentId(studentEntity.getStudentId())
@@ -18,10 +18,10 @@ public class StudentConvert {
                 .build();
     }
 
-    public static List<StudentDtoRespone> listStudentEntityConvertToListStudentRespone(List<Student> listStudentEntity){
+    public static List<StudentDtoRespone> listStudentEntityConvertToListStudentResponse(List<Student> listStudentEntity){
         return listStudentEntity
                 .stream()
-                .map(StudentConvert::studentEntityConvertToStudentRespone)
+                .map(StudentConvert::studentEntityConvertToStudentResponse)
                 .toList();
 
     }
@@ -36,11 +36,4 @@ public class StudentConvert {
                 .build();
     }
 
-    public static List<Student> listStudentDtoRequestConvertToListStudentEntity(List<StudentDtoRequest> listStudentDtoRequest){
-
-        return listStudentDtoRequest
-                .stream()
-                .map(StudentConvert::studentDtoRequestConvertToStudentEntity)
-                .toList();
-    }
 }
