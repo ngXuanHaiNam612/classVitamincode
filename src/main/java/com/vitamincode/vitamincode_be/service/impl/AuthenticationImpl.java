@@ -66,6 +66,7 @@ public class AuthenticationImpl implements AuthenticationService {
         JWSObject jwsObject = new JWSObject(jwsHeader, payload);
 
         jwsObject.sign(new MACSigner(SECRET_KEY.getBytes()));
+
         return jwsObject.serialize();
     }
 }

@@ -3,6 +3,7 @@ package com.vitamincode.vitamincode_be.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import org.springframework.http.HttpStatus;
 
 @Getter
 @AllArgsConstructor
@@ -36,4 +37,5 @@ public enum ErrorCode {
 
     private final Integer status;
     private final String message;
+
 }

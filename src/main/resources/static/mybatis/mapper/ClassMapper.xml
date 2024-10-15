@@ -28,7 +28,7 @@
         FROM class
         <where>
             1 = 1
-            <if test="id != null">
+            <if test="id != null ">
                 AND class_id = #{id}
             </if>
         </where>
