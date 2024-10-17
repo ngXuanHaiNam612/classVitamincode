@@ -1,6 +1,5 @@
 package com.vitamincode.vitamincode_be.convert;
 
-import com.vitamincode.vitamincode_be.dto.response.StudentDtoRespone;
 import com.vitamincode.vitamincode_be.dto.response.UserDtoResponse;
 import com.vitamincode.vitamincode_be.entity.User;
 
@@ -13,7 +12,7 @@ public class UserConvert {
                 .username(user.getUserName())
                 .email(user.getEmail())
                 .enabled(user.getEnabled())
-                .roleId(user.getRoleId())
+                .role(user.getRole())
                 .build();
     }
 
