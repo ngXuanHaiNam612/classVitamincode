@@ -16,6 +16,7 @@ public enum ErrorCode {
     LIST_USER_EMPTY(1000, "List user is empty!"),
     PASSWORD_INCORRECT(1001, "Password incorrect!"),
     USER_NOT_FOUND(1002, "User not found!"),
+    INVALID_TOKEN(1003, "Invalid token!"),
 
 
     LIST_CLASS_EMPTY(2000, "List classes is empty!"),
