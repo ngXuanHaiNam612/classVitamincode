@@ -5,21 +5,19 @@ import com.vitamincode.vitamincode_be.dto.response.ApiResponse;
 import com.vitamincode.vitamincode_be.enums.ErrorCode;
 import com.vitamincode.vitamincode_be.service.StudentService;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-@RequestMapping("/api/v1/student")
+@RequestMapping("/api/v1/s")
 @RequiredArgsConstructor
-@Slf4j
 @CrossOrigin
 
 public class StudentController {
 
     private final StudentService studentServiceImpl;
 
-    @GetMapping("/getAllStudent")
+    @GetMapping
     public ApiResponse<?> getAllStudents() {
 
        return ApiResponse.builder()

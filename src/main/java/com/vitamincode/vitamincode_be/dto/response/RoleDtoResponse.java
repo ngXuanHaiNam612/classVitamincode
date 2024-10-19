@@ -11,8 +11,6 @@ import lombok.Setter;
 public class RoleDtoResponse {
 
     private Integer roleId;
-
     private String roleName;
-
     private String roleDescription;
 }

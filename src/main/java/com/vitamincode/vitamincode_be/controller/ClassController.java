@@ -7,13 +7,10 @@ import com.vitamincode.vitamincode_be.enums.ErrorCode;
 import com.vitamincode.vitamincode_be.mapper.ClassMapper;
 import com.vitamincode.vitamincode_be.service.ClassService;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
-@Slf4j
 @RestController
 @RequestMapping(value = "/api/v1/class")
-
 @RequiredArgsConstructor
 @CrossOrigin
 public class ClassController {
