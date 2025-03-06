@@ -3,7 +3,6 @@ package com.vitamincode.vitamincode_be.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import org.springframework.http.HttpStatus;
 
 @Getter
 @AllArgsConstructor
